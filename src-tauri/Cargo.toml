@@ -1,0 +1,36 @@
+[package]
+name = "riotswitcher"
+version = "0.6.0"
+description = "Cambia de cuenta de League of Legends con un clic"
+authors = ["Dante Kaled"]
+license = "GPL-3.0-or-later"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+
+[lib]
+name = "riotswitcher_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[workspace]
+members = ["crates/core"]
+
+[workspace.dependencies]
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.151"
+thiserror = "2.0.21"
+log = "0.4.34"
+
+[build-dependencies]
+tauri-build = { version = "2.7.0", features = [] }
+
+[dependencies]
+riotswitcher-core = { path = "crates/core" }
+tauri = { version = "2.12.0", features = ["tray-icon", "protocol-asset"] }
+tauri-plugin-single-instance = "2.5.1"
+tauri-plugin-log = "2.10.0"
+tauri-plugin-dialog = "2.8.0"
+tokio = { version = "1.53.1", features = ["sync"] }
+serde = { workspace = true }
+serde_json = { workspace = true }
+log = { workspace = true }

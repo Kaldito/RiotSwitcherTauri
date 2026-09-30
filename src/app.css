@@ -1,0 +1,32 @@
+/* Sólo lo funcional: controles nativos, una columna, sin tema. */
+:root {
+  color-scheme: light dark;
+  font-family: system-ui, 'Segoe UI', sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+}
+body { margin: 0; }
+main, nav { max-width: 960px; margin: 0 auto; padding: 12px 16px; }
+nav { border-bottom: 1px solid color-mix(in srgb, currentColor 20%, transparent); }
+nav button[aria-current='true'] { font-weight: bold; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.status { margin-left: auto; }
+label { display: block; margin: 8px 0; }
+label.inline { display: inline-flex; gap: 4px; align-items: center; margin-right: 12px; }
+input:not([type='radio']), textarea, select { display: block; width: 100%; max-width: 480px; box-sizing: border-box; }
+.cards { display: flex; flex-direction: column; gap: 8px; }
+.card { display: flex; gap: 12px; align-items: center; padding: 8px; border: 1px solid color-mix(in srgb, currentColor 25%, transparent); border-radius: 4px; }
+.card.running { border-width: 2px; }
+.card .info { flex: 1; min-width: 0; }
+.card .info p { margin: 2px 0; }
+.card .actions { display: flex; gap: 4px; flex-wrap: wrap; }
+.thumb { width: 64px; height: 64px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
+.thumb.placeholder { display: grid; place-items: center; font-size: 1.6em; font-weight: bold; background: color-mix(in srgb, currentColor 12%, transparent); }
+.preview { width: 160px; height: 90px; object-fit: cover; display: block; margin-bottom: 8px; }
+.badge { margin-left: 8px; font-size: 0.85em; }
+.notice, .progress { padding: 8px 12px; border: 1px solid color-mix(in srgb, currentColor 25%, transparent); border-radius: 4px; margin: 8px 0; }
+.progress li.current { font-weight: bold; }
+.error { color: #d33; }
+.warning { color: #c80; }
+.ok { color: #2a2; }
+.hint { opacity: 0.75; font-size: 0.9em; margin-top: 0; }

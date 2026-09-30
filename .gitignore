@@ -1,0 +1,22 @@
+# Node
+node_modules/
+dist/
+*.local
+
+# Tauri / Rust
+src-tauri/target/
+src-tauri/gen/schemas/
+# Iconos móviles que genera `tauri icon` (la app es sólo para Windows)
+src-tauri/icons/android/
+src-tauri/icons/ios/
+
+# Editores y sistema
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+
+# Documentación local de trabajo (no versionada)
+.claude_docs/
