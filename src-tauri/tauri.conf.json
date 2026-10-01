@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "RiotSwitcher",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "identifier": "com.kaldito.riotswitcher",
   "build": {
     "frontendDist": "../dist",
@@ -14,10 +14,10 @@
       {
         "label": "main",
         "title": "RiotSwitcher",
-        "width": 1100,
-        "height": 720,
-        "minWidth": 900,
-        "minHeight": 600,
+        "width": 960,
+        "height": 520,
+        "minWidth": 720,
+        "minHeight": 420,
         "resizable": true,
         "decorations": true,
         "center": true

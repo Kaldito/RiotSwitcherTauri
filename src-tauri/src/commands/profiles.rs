@@ -1,6 +1,6 @@
 use std::path::PathBuf;
 
-use riotswitcher_core::now_unix;
+use riotswitcher_core::{lcu, now_unix};
 use riotswitcher_core::profiles::{self as core_profiles, BackgroundRef, NewProfile, ProfilePatch};
 use tauri::{AppHandle, Manager};
 
@@ -86,6 +86,26 @@ pub async fn import_background_image(
         Ok(core_profiles::import_background_image(
             &state.dirs,
             &PathBuf::from(source_path),
+            &hint,
+            now_unix(),
+        )?)
+    })
+    .await
+}
+
+/// Descarga el icono de invocador de la cuenta abierta en el cliente de League, lo guarda
+/// en `backgrounds/` y devuelve la referencia, igual que `import_background_image`.
+#[tauri::command]
+pub async fn import_league_icon(
+    app: AppHandle,
+    name_hint: Option<String>,
+) -> AppResult<BackgroundRef> {
+    blocking(&app, move |_, state| {
+        let icon = lcu::fetch_profile_icon()?;
+        let hint = name_hint.unwrap_or_default();
+        Ok(core_profiles::save_league_icon(
+            &state.dirs,
+            &icon,
             &hint,
             now_unix(),
         )?)

@@ -46,38 +46,53 @@
   }
 </script>
 
-<article class="card" class:running>
-  {#if thumb}
-    <img class="thumb" src={thumb} alt="" />
-  {:else}
-    <div class="thumb placeholder" aria-hidden="true">{profile.name.charAt(0).toUpperCase()}</div>
-  {/if}
-  <div class="info">
-    <strong>{profile.name}</strong>
-    {#if running}<span class="badge">{t('profile.running')}</span>{/if}
-    {#if profile.description}<p>{profile.description}</p>{/if}
-  </div>
-  <div class="actions">
-    {#if running}
-      <button type="button" onclick={stop} disabled={busy}>{t('profile.stop')}</button>
+<article class="tile" class:running data-index={index}>
+  <button
+    type="button"
+    class="avatar"
+    onclick={() => (running ? stop() : play(profile.name))}
+    disabled={busy}
+    aria-label={`${running ? t('profile.stop') : t('profile.play')}: ${profile.name}`}
+  >
+    {#if thumb}
+      <img src={thumb} alt="" />
     {:else}
-      <button type="button" onclick={() => play(profile.name)} disabled={busy}>{t('profile.play')}</button>
+      <span class="letter" aria-hidden="true">{profile.name.charAt(0).toUpperCase()}</span>
     {/if}
-    <button type="button" onclick={() => openForm(profile.name)} disabled={busy}>{t('profile.edit')}</button>
-    <button type="button" onclick={remove} disabled={busy || running}>{t('profile.delete')}</button>
+    <span class="overlay">{running ? t('profile.stop') : t('profile.play')}</span>
+  </button>
+  <strong class="name" title={profile.name}>{profile.name}</strong>
+  {#if running}<span class="badge">{t('profile.running')}</span>{/if}
+  {#if profile.description}<p class="desc">{profile.description}</p>{/if}
+  <div class="tools">
     <button
       type="button"
       onclick={() => move(-1)}
       disabled={busy || index === 0}
       title={t('profile.move_up')}
-      aria-label={t('profile.move_up')}>↑</button
+      aria-label={t('profile.move_up')}>←</button
     >
     <button
       type="button"
       onclick={() => move(1)}
       disabled={busy || index === app.profiles.length - 1}
       title={t('profile.move_down')}
-      aria-label={t('profile.move_down')}>↓</button
+      aria-label={t('profile.move_down')}>→</button
+    >
+    <button
+      type="button"
+      onclick={() => openForm(profile.name)}
+      disabled={busy}
+      title={t('profile.edit')}
+      aria-label={t('profile.edit')}>✎</button
+    >
+    <button
+      type="button"
+      class="danger"
+      onclick={remove}
+      disabled={busy || running}
+      title={t('profile.delete')}
+      aria-label={t('profile.delete')}>✕</button
     >
   </div>
 </article>

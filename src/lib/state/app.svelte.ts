@@ -21,10 +21,7 @@ import type {
 import { resolveLocale, setLocale } from '../i18n/index.svelte'
 
 interface SwapState {
-  action: 'play' | 'stop'
-  profile: string | null
   active: boolean
-  events: SwapProgress[]
   error: string | null
 }
 
@@ -75,10 +72,13 @@ async function runSwap(
   profile: string | null,
   call: (onProgress: (p: SwapProgress) => void) => Promise<RuntimeStatus>,
 ): Promise<void> {
-  const swap: SwapState = { action, profile, active: true, events: [], error: null }
-  app.swap = swap
+  app.swap = { active: true, error: null }
+  // El progreso no se muestra en la interfaz; sólo se registra en desarrollo.
+  const log = (p: SwapProgress) => {
+    if (import.meta.env.DEV) console.debug(`[swap] ${action} ${profile ?? ''}`, p)
+  }
   try {
-    app.runtime = await call((p) => app.swap?.events.push(p))
+    app.runtime = await call(log)
   } catch (e) {
     if (app.swap) app.swap.error = errorMessage(e)
   } finally {
@@ -91,7 +91,3 @@ export const play = (name: string) =>
 
 export const stop = () =>
   runSwap('stop', app.runtime.runningProfile, (onProgress) => stopProfile(onProgress))
-
-export function dismissSwap(): void {
-  if (!app.swap?.active) app.swap = null
-}

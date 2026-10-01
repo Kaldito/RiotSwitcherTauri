@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img alt="Versión" src="https://img.shields.io/badge/versión-0.6.0-blue">
+  <img alt="Versión" src="https://img.shields.io/badge/versión-0.7.0-blue">
   <img alt="Plataforma" src="https://img.shields.io/badge/plataforma-Windows-0078D6">
   <img alt="Tauri" src="https://img.shields.io/badge/Tauri-v2-24C8DB">
   <img alt="Svelte" src="https://img.shields.io/badge/Svelte-5-FF3E00">

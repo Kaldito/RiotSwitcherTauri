@@ -2,7 +2,7 @@
   import { open } from '@tauri-apps/plugin-dialog'
   import { backgroundSrc, customBackgroundPath } from '../backgrounds'
   import { t } from '../i18n/index.svelte'
-  import { createProfile, importBackgroundImage, updateProfile } from '../ipc/commands'
+  import { createProfile, importBackgroundImage, importLeagueIcon, updateProfile } from '../ipc/commands'
   import { errorMessage } from '../ipc/errors'
   import type { BackgroundRef } from '../ipc/types'
   import { app } from '../state/app.svelte'
@@ -14,6 +14,7 @@
   let description = $state(original?.description ?? '')
   let background = $state<BackgroundRef>(original?.background ?? { kind: 'none' })
   let saving = $state(false)
+  let fetchingIcon = $state(false)
   let error = $state<string | null>(null)
 
   const previewSrc = $derived(
@@ -32,6 +33,18 @@
       background = await importBackgroundImage(picked, name.trim() || null)
     } catch (e) {
       error = errorMessage(e)
+    }
+  }
+
+  async function useLeagueIcon() {
+    fetchingIcon = true
+    error = null
+    try {
+      background = await importLeagueIcon(name.trim() || null)
+    } catch (e) {
+      error = errorMessage(e)
+    } finally {
+      fetchingIcon = false
     }
   }
 
@@ -55,7 +68,7 @@
   }
 </script>
 
-<section>
+<section class="narrow">
   <h2>{original ? t('form.edit_title') : t('form.new_title')}</h2>
   <form onsubmit={submit}>
     <label>
@@ -79,17 +92,21 @@
       {/if}
       <div class="row">
         <button type="button" onclick={chooseImage}>{t('form.choose_image')}</button>
+        <button type="button" onclick={useLeagueIcon} disabled={fetchingIcon}>
+          {t('form.league_icon')}
+        </button>
         {#if background.kind === 'custom'}
           <button type="button" onclick={() => (background = { kind: 'none' })}>
             {t('form.no_background')}
           </button>
         {/if}
       </div>
+      <p class="hint">{t('form.league_icon_hint')}</p>
     </fieldset>
 
     {#if error}<p class="error">{error}</p>{/if}
     <div class="row">
-      <button type="submit" disabled={saving}>{original ? t('form.save') : t('form.create')}</button>
+      <button type="submit" class="primary" disabled={saving}>{original ? t('form.save') : t('form.create')}</button>
       <button type="button" onclick={goHome} disabled={saving}>{t('form.cancel')}</button>
     </div>
   </form>

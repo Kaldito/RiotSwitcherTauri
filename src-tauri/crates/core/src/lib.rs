@@ -6,6 +6,7 @@ pub mod config;
 pub mod error;
 pub mod fsutil;
 pub mod launcher;
+pub mod lcu;
 pub mod paths;
 pub mod processes;
 pub mod profiles;

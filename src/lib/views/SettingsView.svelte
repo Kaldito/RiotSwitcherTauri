@@ -30,7 +30,7 @@
   }
 </script>
 
-<section>
+<section class="narrow">
   <h2>{t('app.settings')}</h2>
 
   <label>

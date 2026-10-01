@@ -1,6 +1,6 @@
 [package]
 name = "riotswitcher-core"
-version = "0.6.0"
+version = "0.7.0"
 description = "Lógica de RiotSwitcher sin dependencias de Tauri"
 edition = "2024"
 rust-version = "1.90"
@@ -12,6 +12,8 @@ serde = { workspace = true }
 serde_json = { workspace = true }
 thiserror = { workspace = true }
 log = { workspace = true }
+ureq = "3"
+base64 = "0.22"
 sysinfo = { version = "0.39.6", default-features = false, features = ["system"] }
 
 [dev-dependencies]

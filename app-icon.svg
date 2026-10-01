@@ -1,15 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#1f3b73"/>
-      <stop offset="1" stop-color="#0f7a8a"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f1d3a"/>
+      <stop offset="1" stop-color="#010a13"/>
     </linearGradient>
+    <linearGradient id="frame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f0e6d2"/>
+      <stop offset="0.35" stop-color="#c8aa6e"/>
+      <stop offset="1" stop-color="#785a28"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#0ac8b9" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#0ac8b9" stop-opacity="0"/>
+    </radialGradient>
   </defs>
-  <rect x="16" y="16" width="480" height="480" rx="108" fill="url(#bg)"/>
-  <g fill="none" stroke="#ffffff" stroke-width="40" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M128 196 H368"/>
-    <path d="M308 136 L368 196 L308 256"/>
-    <path d="M384 316 H144"/>
-    <path d="M204 256 L144 316 L204 376"/>
-  </g>
+  <!-- marco hexagonal hextech -->
+  <path d="M512 46L916 279V745L512 978L108 745V279Z" fill="url(#bg)" stroke="url(#frame)" stroke-width="60" stroke-linejoin="miter"/>
+  <path d="M512 160L817 336V688L512 864L207 688V336Z" fill="none" stroke="#785a28" stroke-width="12"/>
+  <circle cx="512" cy="512" r="330" fill="url(#glow)"/>
+  <!-- gema -->
+  <path d="M512 226L512 512L316 512Z" fill="#cdfafa"/>
+  <path d="M512 226L708 512L512 512Z" fill="#5ff0e4"/>
+  <path d="M316 512L512 512L512 798Z" fill="#0ac8b9"/>
+  <path d="M708 512L512 798L512 512Z" fill="#005a82"/>
+  <path d="M512 226L708 512L512 798L316 512Z" fill="none" stroke="url(#frame)" stroke-width="20" stroke-linejoin="miter"/>
+  <!-- remates dorados laterales -->
+  <path d="M207 512L262 472V552Z" fill="#c8aa6e"/>
+  <path d="M817 512L762 472V552Z" fill="#c8aa6e"/>
 </svg>

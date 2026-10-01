@@ -30,7 +30,7 @@
 <main class="boot">
   <h1>RiotSwitcher</h1>
   <h2>{t('boot.title')}</h2>
-  <p>{t('boot.hint')}</p>
+  <p class="subtitle">{t('boot.hint')}</p>
 
   {#if app.boot?.suggestedRiotClientLocation}
     <p>
@@ -43,6 +43,6 @@
     </p>
   {/if}
 
-  <button type="button" onclick={browse} disabled={saving}>{t('boot.browse')}</button>
+  <button type="button" class="primary" onclick={browse} disabled={saving}>{t('boot.browse')}</button>
   {#if error}<p class="error">{error}</p>{/if}
 </main>

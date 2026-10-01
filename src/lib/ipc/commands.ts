@@ -43,6 +43,9 @@ export const reorderProfiles = (ordered: string[]) =>
 export const importBackgroundImage = (sourcePath: string, nameHint: string | null) =>
   invoke<BackgroundRef>('import_background_image', { sourcePath, nameHint })
 
+export const importLeagueIcon = (nameHint: string | null) =>
+  invoke<BackgroundRef>('import_league_icon', { nameHint })
+
 export const playProfile = (name: string, onProgress: (p: SwapProgress) => void) =>
   invoke<RuntimeStatus>('play_profile', { name, onProgress: channel(onProgress) })
 

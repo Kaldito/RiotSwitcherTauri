@@ -21,12 +21,12 @@
 {#if app.loadError}
   <main><p class="error">{app.loadError}</p></main>
 {:else if !app.ready}
-  <main><p>…</p></main>
+  <main class="loading"><p>…</p></main>
 {:else if needsBoot}
   <BootView />
 {:else}
-  <nav class="row">
-    <strong>RiotSwitcher</strong>
+  <nav>
+    <span class="brand">RiotSwitcher</span>
     <button type="button" aria-current={view.name === 'home'} onclick={goHome}>{t('app.profiles')}</button>
     <button type="button" aria-current={view.name === 'settings'} onclick={openSettings}>{t('app.settings')}</button>
     <span class="status">{runningLabel}</span>

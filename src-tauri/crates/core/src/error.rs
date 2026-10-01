@@ -38,6 +38,12 @@ pub enum CoreError {
     #[error("could not launch the Riot Client: {0}")]
     LaunchFailed(#[source] io::Error),
 
+    #[error("the League client is not running")]
+    LeagueClientNotRunning,
+
+    #[error("the League client request failed: {0}")]
+    LeagueClientRequestFailed(String),
+
     #[error("invalid input: {0}")]
     InvalidInput(String),
 
@@ -87,6 +93,8 @@ impl CoreError {
             CoreError::SessionRestoreFailed { .. } => "session_restore_failed",
             CoreError::ProcessesStillRunning(_) => "processes_still_running",
             CoreError::LaunchFailed(_) => "launch_failed",
+            CoreError::LeagueClientNotRunning => "league_client_not_running",
+            CoreError::LeagueClientRequestFailed(_) => "league_client_request_failed",
             CoreError::InvalidInput(_) => "invalid_input",
             CoreError::Io { .. } | CoreError::Json { .. } => "io",
         }

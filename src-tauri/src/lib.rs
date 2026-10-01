@@ -77,6 +77,7 @@ pub fn run() {
             commands::profiles::delete_profile,
             commands::profiles::reorder_profiles,
             commands::profiles::import_background_image,
+            commands::profiles::import_league_icon,
             commands::session::play_profile,
             commands::session::stop_profile,
             commands::session::get_runtime_status,
